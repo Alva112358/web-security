@@ -10,11 +10,14 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class Certificate {
 	public static void main(String[] args) throws CertificateException, FileNotFoundException {
+		Scanner input = new Scanner(System.in);
+		String Filename =  input.nextLine();
 		CertificateFactory cf = CertificateFactory.getInstance("X.509");
-		X509Certificate cert_info = (X509Certificate)cf.generateCertificate(new FileInputStream("D:\\大三上\\2016级\\Web安全\\HW3\\c.cer"));
+		X509Certificate cert_info = (X509Certificate)cf.generateCertificate(new FileInputStream(Filename));
 		String public_key_string = "00" + ((RSAPublicKey) cert_info.getPublicKey()).getModulus().toString(16);
 		int public_key_length = public_key_string.length()*4 - 8;
 		// String signature = (cert_info.getEncoded()).getModulus().toString(16);
